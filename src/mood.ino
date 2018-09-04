@@ -3,6 +3,7 @@
 #include <ESP8266mDNS.h>
 #include <ESP8266WebServer.h>
 #include <FastLed.h>
+#include <moodconfig.h>
 
 #define NUM_LEDS       144
 #define DATA_PIN       D5
@@ -17,9 +18,6 @@ const int led = 2;
 void handleRoot();
 void handleNotFound();
 void handleLED();
-
-const char *ssid = "";
-const char *password = "";
 
 void setup()
 {
@@ -38,9 +36,9 @@ void loop()
 void wifiConfig()
 {
   Serial.print("Connecting to ");
-  Serial.println(ssid);
+  Serial.println(WIFI_SSID);
 
-  WiFi.begin(ssid, password);
+  WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
 
   while (WiFi.status() != WL_CONNECTED)
   {
